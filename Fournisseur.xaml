@@ -1,0 +1,169 @@
+﻿<Window x:Class="WPF_Probleme.Fournisseur"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Probleme"
+        mc:Ignorable="d"
+        Title="Fournisseur" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="2.2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Column="1" Background="LightGray" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Column="2" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+
+        <Label Grid.Column="1" Style="{StaticResource Main_Title}">Table actuelle - Fournisseur</Label>
+
+        <StackPanel Grid.Column ="0" VerticalAlignment="Top" >
+            <Image Source="/WPF_Probleme;component/Logo/logo.png" Margin="0,-20,0,-20" />
+            <Button  Style="{StaticResource Menu_Button }"  Name="Vélos"  Click="Vélos_Click">Vélos</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Pieces"  Click="Pieces_Click">Pièces</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Clients"  Click="Clients_Click">Clients</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Commandes" Click="Commandes_Click">Commandes</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Fidelio" Click="Fidelio_Click">Programme Fidélio</Button>
+        </StackPanel>
+
+
+        <StackPanel Name="Add_Fournisseur_Form" Visibility="Hidden" Grid.Column="2" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro de SIRET :</TextBlock>
+                    <TextBlock Style="{StaticResource descr_textbox}">Nom :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Contact :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Rue :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Ville :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Code Postal :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Qualité :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="siretF_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="nomF_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="contactF_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="rueF_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="villeF_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="CPF_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="qualiteF_add" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button  VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Ajouter_Fournisseur"  Click="Add_Click_Fournisseur">Ajouter</Button>
+        </StackPanel>
+
+
+        
+        <StackPanel Name="Delete_Fournisseur_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center" Margin="0,40,0,0">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro de SIRET :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="siretF_del" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Supprimer_Fournisseur"  Click="Delete_Click_Fournisseur">Supprimer</Button>
+        </StackPanel>
+
+       
+
+        <Grid Name="Modify_Fournisseur_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center" Margin="0,40,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockConditionF" Style="{StaticResource descr_textbox}">Numéro de SIRET :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxConditionF" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockUpdateF" Style="{StaticResource descr_textbox}">Numéro de SIRET :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxUpdateF" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="0" Margin="10,10,10,10">
+                <Label FontWeight="Bold">Conditions on which to Change :</Label>
+                <ComboBox Name="SelectConditionsF" SelectionChanged="SelectConditionsF_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Numéro de SIRET</ComboBoxItem>
+                    <ComboBoxItem>Nom</ComboBoxItem>
+                    <ComboBoxItem>Contact</ComboBoxItem>
+                    <ComboBoxItem>Rue</ComboBoxItem>
+                    <ComboBoxItem>Ville</ComboBoxItem>
+                    <ComboBoxItem>Code Postal</ComboBoxItem>
+                    <ComboBoxItem>Département</ComboBoxItem>
+                    <ComboBoxItem>Qualité</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="10,10,10,10">
+                <Label FontWeight="Bold">Property to Change:</Label>
+                <ComboBox Name="SelectChangeF" SelectionChanged="SelectChangeF_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Numéro de SIRET</ComboBoxItem>
+                    <ComboBoxItem>Nom</ComboBoxItem>
+                    <ComboBoxItem>Contact</ComboBoxItem>
+                    <ComboBoxItem>Rue</ComboBoxItem>
+                    <ComboBoxItem>Ville</ComboBoxItem>
+                    <ComboBoxItem>Code Postal</ComboBoxItem>
+                    <ComboBoxItem>Département</ComboBoxItem>
+                    <ComboBoxItem>Qualité</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <Button Grid.Row="4" VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Update_Fournisseur"  Click="Update_Click_Fournisseur">Modifier</Button>
+        </Grid>
+
+
+        <StackPanel Grid.Column="2" Margin="10,10,10,10">
+            <ComboBox Name="SelectAction" SelectionChanged="SelectAction_SelectionChanged">
+                <ComboBoxItem IsSelected="True">Add</ComboBoxItem>
+                <ComboBoxItem>Delete</ComboBoxItem>
+                <ComboBoxItem>Modify</ComboBoxItem>
+            </ComboBox>
+            <Label Style="{StaticResource Right_Title}"  Name="Title_Modif">Ajouter un Fournisseur</Label>
+        </StackPanel>
+
+        <DataGrid x:Name="MyData" ItemsSource="{Binding}" AlternatingRowBackground="#b1a5b5" Grid.Column="1"  Margin="20,100,20,50" Width="Auto"></DataGrid>
+        <Button  Grid.Column="1" Style="{StaticResource Show_Button}"   Name="Show_Fournisseur"  Click="Show_Fournisseur_Click">Afficher la liste</Button>
+        <StackPanel Grid.Column="2" VerticalAlignment="Bottom" Orientation="Horizontal">
+        </StackPanel>
+    </Grid>
+</Window>

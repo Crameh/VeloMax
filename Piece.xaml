@@ -1,0 +1,243 @@
+﻿<Window x:Class="WPF_Probleme.Piece"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Probleme"
+        mc:Ignorable="d"
+        Title="Piece" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="2.2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#515d96"></Border>
+        <Border Grid.Column="1" Background="LightGray"></Border>
+        <Border Grid.Column="2" Background="#515d96"/>
+        <Label Grid.Column="1" Style="{StaticResource Main_Title}">Table actuelle - Pièces</Label>
+
+
+
+        <StackPanel Grid.Column ="0" VerticalAlignment="Top" >
+            <Image Source="/WPF_Probleme;component/Logo/logo.png" Margin="0,-20,0,-20" />
+            <Button  Style="{StaticResource Menu_Button}"  Name="Velos"  Click="Velos_Click">Vélos</Button>
+            <Button  Style="{StaticResource Menu_Button}"  Name="Fournisseurs"  Click="Fournisseurs_Click">Fournisseurs</Button>
+            <Button  Style="{StaticResource Menu_Button}"  Name="Clients"  Click="Clients_Click">Clients</Button>
+            <Button  Style="{StaticResource Menu_Button}"  Name="Commandes"  Click="Commandes_Click">Commandes</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Fidelio" Click="Fidelio_Click">Programme Fidélio</Button>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Bottom">
+            <Label HorizontalAlignment="Center" Foreground="White" FontWeight="Bold">Exporter la liste de piece au stock faible</Label>
+            <Button  Style="{StaticResource Menu_Button }" Margin="2" Name="ExportPFXML" Width="140" Click="ExportPFXML_Click" FontSize="12">Export XML</Button>
+        </StackPanel>
+
+
+
+        <StackPanel Name="Stock_Search_Piece_Form" Visibility="Hidden"  Grid.Column="2" VerticalAlignment="Center">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="1">
+                    <TextBlock  Margin ="5,0,0,0" FontWeight="Bold" Foreground="White" TextWrapping="Wrap" Name="TextBlockStockSearchP"></TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxStockSearchP" Text=""/>
+                </StackPanel>
+                <Label FontWeight="Bold" Margin="5,0,0,20" Foreground="White">Sélectionné par :</Label>
+                <ComboBox Name="SelectStockSearch" SelectionChanged="SelectStockSearch_SelectionChanged" Grid.Row="0" Grid.Column="1" Margin="0,0,20,20">
+                    <ComboBoxItem IsSelected="True">Numéro de Pièce</ComboBoxItem>
+                    <ComboBoxItem>Description</ComboBoxItem>
+                    <ComboBoxItem>Nom Pièce Fournisseur</ComboBoxItem>
+                    <ComboBoxItem>Numéro Pièce Fournisseur</ComboBoxItem>
+                    <ComboBoxItem>Prix</ComboBoxItem>
+                    <ComboBoxItem>Délais</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}" Margin="0,20,0,0" Name="Stock_Search_Piece"  Click="Stock_Search_Click_Piece">Appliquer</Button>
+        </StackPanel>
+
+
+        <StackPanel Name="Add_Piece_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro Pièce :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Description :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Nom Pièce Fournisseur :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro Pièce Fournisseur :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Prix :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Delai :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Stocks :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Date Introduction :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Date Discontinuité :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="numP" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="descrP" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="NomPF" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="NumPF" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="Prix" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="Delai" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="Stock" Text=""/>
+                    <DatePicker Name="dateintro_add" Margin="0,0,5,15"></DatePicker>
+                    <DatePicker Name="datedisc_add" Margin="0,0,5,15"></DatePicker>
+                </StackPanel>
+            </Grid>
+            <Button  VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Ajouter_Piece"  Click="Add_Click_Piece">Ajouter</Button>
+        </StackPanel>
+
+        <StackPanel Name="Delete_Piece_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0">
+                    <TextBlock  Margin ="2,0,5,0" Style="{StaticResource descr_textbox}">Numéro de Pièce :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="numP_del" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Supprimer_Piece"  Click="Delete_Click_Piece">Supprimer</Button>
+        </StackPanel>
+
+        <Grid Name="Modify_Piece_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockConditionP" Style="{StaticResource descr_textbox}">Numéro de Pièce :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxConditionP" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0"  Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockUpdateP" Style="{StaticResource descr_textbox}">Numéro de Pièce :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxUpdateP" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="0" Margin="10,10,10,10">
+                <Label FontWeight="Bold" Foreground="White">Pièce sur laquelle effectuer un changement :</Label>
+                <ComboBox Name="SelectConditions" SelectionChanged="SelectConditions_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Numéro de Pièce</ComboBoxItem>
+                    <ComboBoxItem>Description</ComboBoxItem>
+                    <ComboBoxItem>Nom Pièce Fournisseur</ComboBoxItem>
+                    <ComboBoxItem>Numéro Pièce Fournisseur</ComboBoxItem>
+                    <ComboBoxItem>Prix</ComboBoxItem>
+                    <ComboBoxItem>Délais</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="10,10,10,10">
+                <Label FontWeight="Bold" Foreground="White">Propriété à changer :</Label>
+                <ComboBox Name="SelectChange" SelectionChanged="SelectChange_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Numéro de Pièce</ComboBoxItem>
+                    <ComboBoxItem>Description</ComboBoxItem>
+                    <ComboBoxItem>Nom Pièce Fournisseur</ComboBoxItem>
+                    <ComboBoxItem>Numéro Pièce Fournisseur</ComboBoxItem>
+                    <ComboBoxItem>Prix</ComboBoxItem>
+                    <ComboBoxItem>Délais</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Grid.Row="4" VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Update_Pièce"  Click="Update_Click_Piece">Modifier</Button>
+        </Grid>
+
+
+        <StackPanel Name="Supply_Piece_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="0,20,0,0">
+                    <TextBlock  Margin ="5,5,0,55" Foreground="White" FontWeight="Bold" Name="TextBlockSupplyPnumP">Numéro de Pièce :</TextBlock>
+                    <TextBlock  Margin ="5,10,0,10" Foreground="White" FontWeight="Bold" TextWrapping="Wrap" Name="TextBlockSupplyPquantite">Quantité :</TextBlock>
+                    <TextBlock  Margin ="5,10,0,20" Foreground="White" FontWeight="Bold" TextWrapping="Wrap" Name="TextBlockSupplyPnomF">Fournisseur :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,10,5,0" Name="TextBoxSupplyPnumP" Text=""/>
+                    <Button Style="{StaticResource Action_Button}" Width="180" Name="Search_Supplier" Click="Search_Supplier_Click_Piece" Margin="0,10,0,10">Rechercher un fournisseur</Button>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,10,5,0" Name="TextBoxSupplyPquantiteP" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,10,5,0" Name="TextBoxSupplyPnomF" Text=""/>
+                </StackPanel>
+
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Supply_Piece"  Click="Command_Click_Piece">Commander la pièce</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Margin="10,10,10,10">
+            <ComboBox Name="SelectAction" SelectionChanged="SelectAction_SelectionChanged">
+                <ComboBoxItem IsSelected="True">Research</ComboBoxItem>
+                <ComboBoxItem>Add</ComboBoxItem>
+                <ComboBoxItem>Delete</ComboBoxItem>
+                <ComboBoxItem>Modify</ComboBoxItem>
+                <ComboBoxItem>Stock Overview</ComboBoxItem>
+                <ComboBoxItem>Supply</ComboBoxItem>
+            </ComboBox>
+            <Label Style="{StaticResource Right_Title}"  Name="Title_Modif" Margin="5,10,5,0">Rechercher une pièce :</Label>
+        </StackPanel>
+
+
+        <StackPanel  Margin ="10" Visibility="Visible" Name="Stat_Client_Particulier" Grid.Column="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button  Grid.Column="2" Style="{StaticResource Action_Button}" VerticalAlignment="Bottom"   Name="Item_Sold_bis" Click="Item_Sold_Click">Inventaire de vente</Button>
+        </StackPanel>
+
+        <DataGrid x:Name="MyData" ItemsSource="{Binding}" Grid.Column="1"  Margin="20,100,20,50" Width="Auto" AlternatingRowBackground="#b1a5b5"></DataGrid>
+        <Button  Grid.Column="1" Style="{StaticResource Show_Button}"   Name="Show_Pieces"  Click="Show_Pieces_Click">Afficher la liste</Button>
+    </Grid>
+</Window>

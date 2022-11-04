@@ -1,0 +1,67 @@
+﻿<Window x:Class="WPF_Probleme.CommandeLigne"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Probleme"
+        mc:Ignorable="d"
+        Title="CommandeLigne" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="LightGray" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Column="1" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <StackPanel Grid.Column="1">
+            <Label Style="{StaticResource Right_Title}">Ajouter des lignes à votre commandes</Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Name="WhatCommand">
+                <RadioButton Foreground="White" FontWeight="Bold" IsChecked="True" Name="Velo_Selected" Margin="20,0,20,0" Click="Radio_Button_Type_CommandeLigne">Vélo</RadioButton>
+                <RadioButton Foreground="White" FontWeight="Bold" Name="Piece_Selected" Margin="20,0,20,0" Click="Radio_Button_Type_CommandeLigne">Pièce</RadioButton>
+            </StackPanel>
+        </StackPanel>
+
+
+
+        <StackPanel Name="Add_Velo_CommandeLigne_Form" Visibility="Visible" Grid.Column="1" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro de Vélo :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Quantité :</TextBlock>
+                </StackPanel>
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="numV_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="quantiteV_add" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button  VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Ajouter_CommandeLigneV"  Click="Add_Click_CommandeLigne">Ajouter</Button>
+        </StackPanel>
+
+        <StackPanel Name="Add_Piece_CommandeLigne_Form" Visibility="Collapsed" Grid.Column="1" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro de Pièce :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Quantité :</TextBlock>
+                </StackPanel>
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="numP_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="quantiteP_add" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button  VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Ajouter_CommandeLigneP"  Click="Add_Click_CommandeLigne">Ajouter</Button>
+        </StackPanel>
+            <Label Grid.Column="0" Style="{StaticResource Main_Title}">Contenu de votre commande</Label>
+        <DataGrid x:Name="MyData" ItemsSource="{Binding}" Grid.Column="0"  Margin="20,100,20,50" Width="Auto"></DataGrid>
+        <Button  VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Quitter_CommandeLigneP"  Click="Quit_Click_CommandeLigne" Grid.Column="1">Quitter</Button>
+
+    </Grid>
+</Window>

@@ -1,0 +1,361 @@
+﻿<Window x:Class="WPF_Probleme.Client"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Probleme"
+        mc:Ignorable="d"
+        Title="Client" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Column="1" Background="LightGray" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Column="2" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+
+        <Label Grid.Column="1" Style="{StaticResource Main_Title}">Table actuelle - Clients</Label>
+
+
+
+        <StackPanel Grid.Column ="0" VerticalAlignment="Top" >
+            <Image Source="/WPF_Probleme;component/Logo/logo.png" Margin="0,-20,0,-20" />
+            <Button  Style="{StaticResource Menu_Button }"  Name="Vélos"  Click="Vélos_Click">Vélos</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Pieces"  Click="Pieces_Click">Pièces</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Fournisseurs"  Click="Fournisseurs_Click">Fournisseurs</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Commandes" Click="Commandes_Click">Commandes</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Fidelio" Click="Fidelio_Click">Programme Fidélio</Button>
+        </StackPanel>
+
+
+        <StackPanel Name="Search_Client_Form" Visibility="Hidden" Grid.Column="2" VerticalAlignment="Center">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="1">
+                    <TextBlock  Margin ="5,0,0,0" TextWrapping="Wrap" Name="TextBlockSearchC" Foreground="White" FontWeight="Bold">Entrez votre information :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxSearchC" Text=""/>
+                </StackPanel>
+                <Label Margin="5,0,0,20"  FontWeight="Bold" Foreground="White">Sélectionné par :</Label>
+                <ComboBox Name="SelectSearchI"  Grid.Row="0" Grid.Column="1" Margin="0,0,5,20" Visibility="Visible">
+                    <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
+                    <ComboBoxItem>Prénom</ComboBoxItem>
+                    <ComboBoxItem>Rue</ComboBoxItem>
+                    <ComboBoxItem>Ville</ComboBoxItem>
+                    <ComboBoxItem>Code Postal</ComboBoxItem>
+                    <ComboBoxItem>Téléphone</ComboBoxItem>
+                    <ComboBoxItem>Email</ComboBoxItem>
+                </ComboBox>
+
+                <ComboBox Name="SelectSearchB"  Grid.Row="0" Grid.Column="1" Margin="0,0,5,20" Visibility="Collapsed">
+                    <ComboBoxItem IsSelected="True">Nom Boutique</ComboBoxItem>
+                    <ComboBoxItem>Rue</ComboBoxItem>
+                    <ComboBoxItem>Ville</ComboBoxItem>
+                    <ComboBoxItem>Code Postal</ComboBoxItem>
+                    <ComboBoxItem>Téléphone</ComboBoxItem>
+                    <ComboBoxItem>Email</ComboBoxItem>
+                    <ComboBoxItem>Nom du Contact</ComboBoxItem>
+                    <ComboBoxItem>Taux de Remise</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Search_Client"  Click="Search_Click_Client" Margin="0,20,0,0">Appliquer</Button>
+        </StackPanel>
+
+
+        <StackPanel Name="Add_Boutique_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Nom Boutique :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Rue :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Ville :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Code Postal :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Téléphone :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Email :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Nom du Contact :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Taux de Remise :</TextBlock>
+                    
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="nomB_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="rueB_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="villeB_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="CPB_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="telB_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="emailB_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="nomcontactB_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="remiseB_add" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button  VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Ajouter_Boutique"  Click="Add_Click_Boutique">Ajouter</Button>
+        </StackPanel>
+
+
+        <StackPanel Name="Add_Particulier_Form" Visibility="Hidden" Grid.Column="2" VerticalAlignment="Center" Margin="0,40,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Nom :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Prénom :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Rue :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Ville :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Code Postal :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Téléphone :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Email :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="nomI_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="prenomI_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="rueI_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="villeI_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="CPI_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="telI_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="emailI_add" Text=""/>
+                </StackPanel>
+
+            </Grid>
+            <StackPanel>
+                <ComboBox Margin="20" Name="FidelioChoice">
+                    <ComboBoxItem IsSelected="True">Sans Fidélio</ComboBoxItem>
+                    <ComboBoxItem>Fidélio</ComboBoxItem>
+                    <ComboBoxItem>Fidélio Or</ComboBoxItem>
+                    <ComboBoxItem>Fidélio Platine</ComboBoxItem>
+                    <ComboBoxItem>Fidélio Max</ComboBoxItem>
+                </ComboBox>
+                <Button  VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Ajouter_Particulier"  Click="Add_Click_Particulier">Ajouter</Button>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Name="Delete_Boutique_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center" Margin="0,40,0,0">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Nom Boutique :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="nomB_del" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Supprimer_Boutique"  Click="Delete_Click_Boutique">Supprimer</Button>
+        </StackPanel>
+
+        <StackPanel Name="Delete_Particulier_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Nom :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Prénom :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="NomI_del" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="prenomI_del" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Supprimer_Particulier"  Click="Delete_Click_Particulier">Supprimer</Button>
+        </StackPanel>
+
+        <Grid Name="Modify_Boutique_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center" Margin="0,120,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockConditionB" Style="{StaticResource descr_textbox}">Nom Boutique :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxConditionB" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockUpdateB" Style="{StaticResource descr_textbox}">Nom Boutique :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxUpdateB" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="0" Margin="10,10,10,10">
+                <Label FontWeight="Bold" Foreground="White">Boutique sur laquelle approter une modification :</Label>
+                <ComboBox Name="SelectConditionsB" SelectionChanged="SelectConditionsB_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Nom Boutique</ComboBoxItem>
+                    <ComboBoxItem>Rue</ComboBoxItem>
+                    <ComboBoxItem>Ville</ComboBoxItem>
+                    <ComboBoxItem>Code Postal</ComboBoxItem>
+                    <ComboBoxItem>Téléphone</ComboBoxItem>
+                    <ComboBoxItem>Email</ComboBoxItem>
+                    <ComboBoxItem>Nom du Contact</ComboBoxItem>
+                    <ComboBoxItem>Taux de Remise</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="10,10,10,10">
+                <Label FontWeight="Bold" Foreground="White">Propriété à changer :</Label>
+                <ComboBox Name="SelectChangeB" SelectionChanged="SelectChangeB_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Nom Boutique</ComboBoxItem>
+                    <ComboBoxItem>Rue</ComboBoxItem>
+                    <ComboBoxItem>Ville</ComboBoxItem>
+                    <ComboBoxItem>Code Postal</ComboBoxItem>
+                    <ComboBoxItem>Téléphone</ComboBoxItem>
+                    <ComboBoxItem>Email</ComboBoxItem>
+                    <ComboBoxItem>Nom du Contact</ComboBoxItem>
+                    <ComboBoxItem>Taux de Remise</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Grid.Row="4" VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Update_Boutique"  Click="Update_Click_Boutique">Modifier</Button>
+        </Grid>
+
+
+
+
+        <Grid Name="Modify_Particulier_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center"  Margin="0,120,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockConditionI" Style="{StaticResource descr_textbox}">Nom :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxConditionI" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockUpdateI" Style="{StaticResource descr_textbox}">Nom :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxUpdateI" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="0" Margin="10,10,10,10">
+                <Label FontWeight="Bold" Foreground="White">Boutique sur laquelle approter une modification :</Label>
+                <ComboBox Name="SelectConditionsI" SelectionChanged="SelectConditionsI_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
+                    <ComboBoxItem>Prénom</ComboBoxItem>
+                    <ComboBoxItem>Rue</ComboBoxItem>
+                    <ComboBoxItem>Ville</ComboBoxItem>
+                    <ComboBoxItem>Code Postal</ComboBoxItem>
+                    <ComboBoxItem>Téléphone</ComboBoxItem>
+                    <ComboBoxItem>Email</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="10,10,10,10">
+                <Label FontWeight="Bold" Foreground="White">Propriété à changer :</Label>
+                <ComboBox Name="SelectChangeI" SelectionChanged="SelectChangeI_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
+                    <ComboBoxItem>Prénom</ComboBoxItem>
+                    <ComboBoxItem>Rue</ComboBoxItem>
+                    <ComboBoxItem>Ville</ComboBoxItem>
+                    <ComboBoxItem>Code Postal</ComboBoxItem>
+                    <ComboBoxItem>Téléphone</ComboBoxItem>
+                    <ComboBoxItem>Email</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Grid.Row="4" VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Update_Particulier"  Click="Update_Click_Particulier">Modifier</Button>
+        </Grid>
+
+        <StackPanel Grid.Column="2" Margin="10,10,10,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <RadioButton  Foreground="White" FontWeight="Bold" IsChecked="True" Name="Particuliers_Selected" Margin="20,0,20,0" Click="Radio_Button_Type_Client">Particuliers</RadioButton>
+                <RadioButton Foreground="White" FontWeight="Bold" Name="Boutiques_Selected" Margin="20,0,20,0" Click="Radio_Button_Type_Client">Boutiques</RadioButton>
+            </StackPanel>
+
+            <ComboBox Name="SelectAction" SelectionChanged="SelectAction_SelectionChanged">
+                <ComboBoxItem IsSelected="True">Research</ComboBoxItem>
+                <ComboBoxItem >Add</ComboBoxItem>
+                <ComboBoxItem>Delete</ComboBoxItem>
+                <ComboBoxItem>Modify</ComboBoxItem>
+            </ComboBox>
+            <Label Style="{StaticResource Right_Title}"  Name="Title_Modif">Rechercher un Client</Label>
+        </StackPanel>
+
+        <DataGrid x:Name="MyData" ItemsSource="{Binding}" Grid.Column="1"  Margin="20,100,20,50" Width="Auto"></DataGrid>
+        <StackPanel  Margin ="10" Visibility="Visible" Name="Stat_Client_Particulier" Grid.Column="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button  Grid.Column="2" Style="{StaticResource Action_Button}" VerticalAlignment="Bottom" Name="Best_Client_Item" FontSize="12"  Click="Best_Client_Item_Click" >Meilleur Client Item</Button>
+            <Button  Grid.Column="2" Style="{StaticResource Action_Button}" VerticalAlignment="Bottom" Name="Best_Client_Price" FontSize="12"  Click="Best_Client_Price_Click" >Meilleur Client Prix</Button>
+        </StackPanel>
+
+        <Button  Grid.Column="1" Style="{StaticResource Show_Button}"   Name="Show_Velos"  Click="Show_Client_Click">Afficher la liste</Button>
+        <StackPanel Grid.Column="2" VerticalAlignment="Bottom" Orientation="Horizontal">
+        </StackPanel>
+    </Grid>
+</Window>

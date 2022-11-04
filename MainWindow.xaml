@@ -1,0 +1,47 @@
+﻿<Window x:Class="WPF_Probleme.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Probleme"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Row="1" Background="LightGray" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Row="2" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+
+
+
+        <Label Grid.Row="0" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#cda9d1">VéloMax</Label>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="10">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Margin="0,10,0,10" FontWeight="Bold">Identifiant :</TextBlock>
+                    <TextBlock Margin="0,10,0,10" FontWeight="Bold">Mot de Passe :</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBox Name="Identifiant" Margin="0,10,0,10"></TextBox>
+                    <TextBox Name="MotdePasse" Margin="0,10,0,10"></TextBox>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <Button Style="{StaticResource Action_Button}" Grid.Row="2" Name="Connection" Click="Connection_Click" VerticalAlignment="Center" HorizontalAlignment="Center">Connexion</Button>
+            
+
+    </Grid>
+</Window>

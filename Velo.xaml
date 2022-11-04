@@ -1,0 +1,214 @@
+﻿<Window x:Class="WPF_Probleme.Velo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Probleme"
+        mc:Ignorable="d"
+        Title="Velo" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="2.2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Column="1" Background="LightGray" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+        <Border Grid.Column="2" Background="#515d96" BorderBrush="Black" BorderThickness="1,0,1,0"></Border>
+
+        <Label Style="{StaticResource Main_Title}"  Grid.Column="1">Table actuelle - Vélo</Label>
+
+        <StackPanel VerticalAlignment="Top">
+            <Image Source="/WPF_Probleme;component/Logo/logo.png" Margin="0,-20,0,-20" />
+            <Button  Style="{StaticResource Menu_Button }"  Name="Pieces"  Click="Pieces_Click">Pièces</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Fournisseurs"  Click="Fournisseurs_Click">Fournisseurs</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Clients"  Click="Clients_Click">Clients</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Commandes" Click="Commandes_Click">Commandes</Button>
+            <Button  Style="{StaticResource Menu_Button }"  Name="Fidelio" Click="Fidelio_Click">Programme Fidélio</Button>
+        </StackPanel>
+
+        <StackPanel Name="Add_Velo_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,10,0,0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro de Vélo :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Nom de Vélo :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Taille du Vélo :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Prix Unitaire :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Type du Vélo :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Date Introduction :</TextBlock>
+                    <TextBlock  Style="{StaticResource descr_textbox}">Date Discontinuité :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="numV_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="nomV_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="tailleV_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="prixUV_add" Text=""/>
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="typeV_add" Text=""/>
+                    <DatePicker Name="dateintro_add" Margin="0,0,5,15"></DatePicker>
+                    <DatePicker Name="datedisc_add" Margin="0,0,5,15"></DatePicker>
+                </StackPanel>
+            </Grid>
+            <Button  VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Ajouter_Velo"  Click="Add_Click_Velo">Ajouter</Button>
+        </StackPanel>
+
+        <StackPanel Name="Contenu_Velo_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro de Vélo :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="numV_cont" Text=""/>
+                </StackPanel>
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Contenu_Velo"  Click="Contenu_Click_Velo">Assemblage</Button>
+        </StackPanel>
+
+        <StackPanel Name="Delete_Velo_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0">
+                    <TextBlock  Style="{StaticResource descr_textbox}">Numéro de Vélo :</TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,15" Name="numV_del" Text=""/>
+                </StackPanel>
+
+            </Grid>
+
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Supprimer_Velo"  Click="Delete_Click_Velo">Supprimer</Button>
+        </StackPanel>
+
+        <Grid Name="Modify_Velo_Form" Visibility="Collapsed" Grid.Column="2" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockConditionV" Style="{StaticResource descr_textbox}">Numéro de Vélo :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxConditionV" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" VerticalAlignment="Center">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Margin="0,20,0,0">
+                        <TextBlock Name ="TextBlockUpdateV" Style="{StaticResource descr_textbox}">Numéro de Vélo :</TextBlock>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxUpdateV" Text=""/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="0" Margin="10,10,10,10">
+                <Label FontWeight="Bold" Foreground="White">Vélo sur lequel effectuer un changement :</Label>
+                <ComboBox Name="SelectConditions" SelectionChanged="SelectConditions_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Numéro de Vélo</ComboBoxItem>
+                    <ComboBoxItem>Nom de Vélo</ComboBoxItem>
+                    <ComboBoxItem>Taille du Vélo</ComboBoxItem>
+                    <ComboBoxItem>Prix Unitaire</ComboBoxItem>
+                    <ComboBoxItem>Type du Vélo</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="10,10,10,10">
+                <Label FontWeight="Bold" Foreground="White">Propriété à changer :</Label>
+                <ComboBox Name="SelectChange" SelectionChanged="SelectChange_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Numéro de Vélo</ComboBoxItem>
+                    <ComboBoxItem>Nom de Vélo</ComboBoxItem>
+                    <ComboBoxItem>Taille du Vélo</ComboBoxItem>
+                    <ComboBoxItem>Prix Unitaire</ComboBoxItem>
+                    <ComboBoxItem>Type du Vélo</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Grid.Row="4" VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Update_Velo"  Click="Update_Click_Velo">Modifier</Button>
+        </Grid>
+
+        <StackPanel Name="Stock_Search_Velo_Form" Visibility="Hidden" Grid.Column="2" VerticalAlignment="Center">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="1">
+                    <TextBlock  Margin ="10,0,5,0" TextWrapping="Wrap" Name="TextBlockStockSearchV" Foreground="White" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+
+                <StackPanel  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                    <TextBox   Height="25" VerticalAlignment="Top" Margin="0,0,5,0" Name="TextBoxStockSearchV" Text=""/>
+                </StackPanel>
+                <Label FontWeight="Bold" Margin="5,0,0,20" Foreground="White">Sélectionné par :</Label>
+                <ComboBox Name="SelectStockSearch" SelectionChanged="SelectStockSearch_SelectionChanged" Grid.Row="0" Grid.Column="1" Margin="0,0,5,20">
+                    <ComboBoxItem IsSelected="True">Numéro de Vélo</ComboBoxItem>
+                    <ComboBoxItem>Nom de Vélo</ComboBoxItem>
+                    <ComboBoxItem>Taille du Vélo</ComboBoxItem>
+                    <ComboBoxItem>Prix Unitaire</ComboBoxItem>
+                    <ComboBoxItem>Type du Vélo</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+            <Button   VerticalAlignment="Bottom" Style="{StaticResource Action_Button}"  Name="Stock_Search_Velo"  Click="Stock_Search_Click_Velo" Margin="20">Appliquer</Button>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="2" Margin="10,10,10,10">
+            <ComboBox Name="SelectAction" SelectionChanged="SelectAction_SelectionChanged">
+                <ComboBoxItem IsSelected="True">Research</ComboBoxItem>
+                <ComboBoxItem>Liste d'assemblage d'un Vélo</ComboBoxItem>
+                <ComboBoxItem>Add</ComboBoxItem>
+                <ComboBoxItem>Delete</ComboBoxItem>
+                <ComboBoxItem>Modify</ComboBoxItem>
+            </ComboBox>
+            <Label Style="{StaticResource Right_Title}"  Name="Title_Modif">Rechercher un Vélo</Label>
+        </StackPanel>
+
+        <Button  Style="{StaticResource Action_Button}" Grid.Column="2" VerticalAlignment="Bottom" Name="Item_Sold_bis" Click="Item_Sold_Click">Inventaire de vente</Button>
+
+        <DataGrid x:Name="MyData" ItemsSource="{Binding}" AlternatingRowBackground="#b1a5b5" Grid.Column="1"  Margin="20,100,20,50" Width="Auto"></DataGrid>
+        <Button  Grid.Column="1" Style="{StaticResource Show_Button}"   Name="Show_Velos"  Click="Show_Velos_Click">Afficher la liste</Button>
+
+    </Grid>
+</Window>
